@@ -225,37 +225,11 @@ public class TicTacToeGame {
 		int currentPlayer = gameObject.decideFirstPlayer();
 		System.out.println(currentPlayer);
 		String continueToPlay = gameObject.checkWinner();
-		while(continueToPlay=="change turn") {
+		while(continueToPlay=="change turn" && continueToPlay!="draw") {
 			if(currentPlayer==0) {
-				int winPositionAvailability = gameObject.checkForWinningPositionAvailability(playerLetter);
-				if(winPositionAvailability!=0) {
-					gameBoard[winPositionAvailability]=playerLetter;
-				}
-				else {
-					int opponentWinPosition = gameObject.checkIfOpponentCanWin(computerLetter);
-					if(opponentWinPosition!=0) {
-						gameBoard[opponentWinPosition]=playerLetter;
-					}
-					else {
-						int cornerAvailability = gameObject.checkAvailableCorner();
-						if(cornerAvailability!=0) {
-							gameBoard[cornerAvailability]=playerLetter;
-						}
-						else {
-							int centerAvailability = gameObject.checkCenterAvailability();
-							if(centerAvailability!=0) {
-								gameBoard[centerAvailability]=playerLetter;
-							}
-							else {
-								int remainingPositions = gameObject.checkRemainingAvailableIndex();
-								if(remainingPositions!=0) {
-									gameBoard[remainingPositions]=playerLetter;
-								}
-							}
-						}
-					}
-				}
+				gameObject.makeMove(playerLetter);
 				currentPlayer=1;
+				
 			} 
 			else if(currentPlayer==1) {
 				int winPositionAvailability = gameObject.checkForWinningPositionAvailability(playerLetter);

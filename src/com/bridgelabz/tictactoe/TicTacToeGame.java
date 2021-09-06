@@ -147,6 +147,25 @@ public class TicTacToeGame {
 		else
 			return 0;
 	}
+	private int checkRemainingAvailableIndex() {
+		if(gameBoard[2]==' ')
+			return 2;
+		else if(gameBoard[4]==' ')
+			return 4;
+		else if(gameBoard[6]==' ')
+			return 6;
+		else if(gameBoard[8]==' ')
+			return 8;
+		else
+			return 0;
+	}
+
+	private int checkCenterAvailability() {
+		if(gameBoard[5]==' ')
+			return 5;
+		else
+			return 0;
+	}
 
 	public String checkWinner()
 	{

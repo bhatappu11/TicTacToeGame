@@ -7,7 +7,7 @@ public class TicTacToeGame {
 	
 	public static char[] createBoard() {
 		for(int index=1;index<gameBoard.length;index++) {
-			gameBoard[index]=' ';
+			gameBoard[index]='c';
 		}
 		return gameBoard;
 	}
@@ -17,7 +17,13 @@ public class TicTacToeGame {
 		char letter=scanner.next().charAt(0);
 		return letter;
 	}
-
+	private static void displayBoard() {
+		for(int index=1;index<gameBoard.length;index++) {
+			if(index==4 || index==7)
+				System.out.println();
+			System.out.print(gameBoard[index]);
+		}
+	}
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe game");
 		char[] board = createBoard();
@@ -27,7 +33,9 @@ public class TicTacToeGame {
 			computerLetter = 'O';
 		else
 			computerLetter = 'X';
+		displayBoard();
 		
 	}
+	
 
 }

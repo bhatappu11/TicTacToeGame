@@ -130,6 +130,12 @@ public class TicTacToeGame {
 			return 0;
 
 	}
+	private int checkIfOpponentCanWin(char opponent) {
+		int availability=checkForWinningPositionAvailability(opponent);
+		return availability;
+		
+	}
+
 
 	public String checkWinner()
 	{

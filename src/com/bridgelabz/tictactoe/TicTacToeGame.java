@@ -28,23 +28,30 @@ public class TicTacToeGame {
 	public void makeMove(char letter) {
 		System.out.println("Enter the index between 1-9");
 		int index=scanner.nextInt();
-		if(gameBoard[index]==' ') {
+		int indexCheck = checkFreeSpace(index);
+		if(indexCheck==1) {
 			gameBoard[index]=letter;			
 		}
 		else
 			System.err.println("Index is not free");
 		
 	}
+	private int checkFreeSpace(int index) {
+		if(gameBoard[index]==' ')
+			return 1;
+		else
+			return 0;
+	}
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe game");
 		TicTacToeGame gameObject=new TicTacToeGame();
 		char[] board = gameObject.createBoard();
-		char computerLetter = ' ';
 		char playerLetter = gameObject.letterToPlay();
-		computerLetter = playerLetter=='X'?'O':'X';
+		char computerLetter = playerLetter=='X'?'O':'X';
 		gameObject.displayBoard();
 		gameObject.makeMove(playerLetter);
 		gameObject.displayBoard();
+		gameObject.makeMove(playerLetter);
 		
 	}
 	

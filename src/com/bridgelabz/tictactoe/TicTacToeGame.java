@@ -17,6 +17,12 @@ public class TicTacToeGame {
 		char letter=scanner.next().charAt(0);
 		return letter;
 	}
+	public int decideFirstPlayer() {
+		int firstPlayer = (int)Math.floor(Math.random()*2);
+		String firstPlayerName = firstPlayer==0 ? "Player" : "Computer";
+		System.out.println(firstPlayerName+" will play first");
+		return firstPlayer;
+	}
 	private void displayBoard() {
 		for(int index=1;index<gameBoard.length;index++) {
 			if(index==4 || index==7)
@@ -26,14 +32,20 @@ public class TicTacToeGame {
 		System.out.println();
 	}
 	public void makeMove(char letter) {
-		System.out.println("Enter the index between 1-9");
-		int index=scanner.nextInt();
-		int indexCheck = checkFreeSpace(index);
-		if(indexCheck==1) {
-			gameBoard[index]=letter;			
+		while(true) {
+			System.out.println("Enter the index between 1-9");
+			int index=scanner.nextInt();
+			int indexCheck = checkFreeSpace(index);
+			if(indexCheck==1) {
+				gameBoard[index]=letter;
+				displayBoard();
+				break;
+			}
+			else {
+				System.err.println("Index is not free");
+				continue;
+			}
 		}
-		else
-			System.err.println("Index is not free");
 		
 	}
 	private int checkFreeSpace(int index) {
@@ -49,8 +61,7 @@ public class TicTacToeGame {
 		char playerLetter = gameObject.letterToPlay();
 		char computerLetter = playerLetter=='X'?'O':'X';
 		gameObject.displayBoard();
-		gameObject.makeMove(playerLetter);
-		gameObject.displayBoard();
+		int firstPlayer = gameObject.decideFirstPlayer();
 		gameObject.makeMove(playerLetter);
 		
 	}

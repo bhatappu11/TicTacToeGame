@@ -54,6 +54,83 @@ public class TicTacToeGame {
 		else
 			return 0;
 	}
+	private int checkForWinningPositionAvailability(char letter) {
+		if (gameBoard[1] == letter && gameBoard[2] == letter && gameBoard[3] == ' ') {
+			return 3;
+		}
+		if (gameBoard[1] == letter && gameBoard[3] == letter && gameBoard[2] == ' ') {
+			return 2;
+		}
+		if (gameBoard[3] == letter && gameBoard[2] == letter && gameBoard[1] == ' ') {
+			return 1;
+		}
+		if (gameBoard[4] == letter && gameBoard[5] == letter && gameBoard[6] == ' ') {
+			return 6;
+		}
+		if (gameBoard[4] == letter && gameBoard[6] == letter && gameBoard[5] == ' ') {
+			return 5;
+		}
+		if (gameBoard[6] == letter && gameBoard[5] == letter && gameBoard[4] == ' ') {
+			return 4;
+		}
+		if (gameBoard[7] == letter && gameBoard[8] == letter && gameBoard[9] == ' ') {
+			return 9;
+		}
+		if (gameBoard[7] == letter && gameBoard[9] == letter && gameBoard[8] == ' ') {
+			return 8;
+		}
+		if (gameBoard[9] == letter && gameBoard[8] == letter && gameBoard[7] == ' ') {
+			return 7;
+		}
+		if (gameBoard[1] == letter && gameBoard[4] == letter && gameBoard[7] == ' ') {
+			return 7;
+		}
+		if (gameBoard[1] == letter && gameBoard[7] == letter && gameBoard[4] == ' ') {
+			return 4;
+		}
+		if (gameBoard[7] == letter && gameBoard[4] == letter && gameBoard[1] == ' ') {
+			return 1;
+		}
+		if (gameBoard[2] == letter && gameBoard[5] == letter && gameBoard[8] == ' ') {
+			return 8;
+		}
+		if (gameBoard[2] == letter && gameBoard[8] == letter && gameBoard[5] == ' ') {
+			return 5;
+		}
+		if (gameBoard[8] == letter && gameBoard[5] == letter && gameBoard[2] == ' ') {
+			return 2;
+		}
+		if (gameBoard[3] == letter && gameBoard[6] == letter && gameBoard[9] == ' ') {
+			return 9;
+		}
+		if (gameBoard[3] == letter && gameBoard[9] == letter && gameBoard[6] == ' ') {
+			return 6;
+		}
+		if (gameBoard[9] == letter && gameBoard[6] == letter && gameBoard[3] == ' ') {
+			return 3;
+		}
+		if (gameBoard[1] == letter && gameBoard[5] == letter && gameBoard[9] == ' ') {
+			return 9;
+		}
+		if (gameBoard[1] == letter && gameBoard[9] == letter && gameBoard[5] == ' ') {
+			return 5;
+		}
+		if (gameBoard[9] == letter && gameBoard[5] == letter && gameBoard[1] == ' ') {
+			return 2;
+		}
+		if (gameBoard[3] == letter && gameBoard[5] == letter && gameBoard[7] == ' ') {
+			return 7;
+		}
+		if (gameBoard[3] == letter && gameBoard[7] == letter && gameBoard[5] == ' ') {
+			return 5;
+		}
+		if (gameBoard[7] == letter && gameBoard[5] == letter && gameBoard[3] == ' ') {
+			return 3;
+		} else
+			return 0;
+
+	}
+
 	public String checkWinner()
 	{
 		for (int index = 1; index < 9; index++) {

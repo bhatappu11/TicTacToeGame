@@ -33,12 +33,12 @@ public class TicTacToeGame {
 	}
 	public void makeMove(char letter) {
 		while(true) {
+			System.out.println();
 			System.out.println("Enter the index between 1-9");
 			int index=scanner.nextInt();
 			int indexCheck = checkFreeSpace(index);
 			if(indexCheck==1) {
 				gameBoard[index]=letter;
-				displayBoard();
 				break;
 			}
 			else {
@@ -215,6 +215,20 @@ public class TicTacToeGame {
 		}
 		return "draw";
 	}
+	private void playAgain() {
+		System.out.println("Do you want to play another game?: ");
+		String wantToPlay=scanner.next().toLowerCase();
+		if(wantToPlay.equals("yes")) {
+			main(null);
+
+		}
+		else
+		{
+			return;
+		}
+
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe game");
 		TicTacToeGame gameObject=new TicTacToeGame();
@@ -225,39 +239,14 @@ public class TicTacToeGame {
 		int currentPlayer = gameObject.decideFirstPlayer();
 		System.out.println(currentPlayer);
 		String continueToPlay = gameObject.checkWinner();
-		while(continueToPlay=="change turn") {
+		while(continueToPlay=="change turn" && continueToPlay!="draw") {
 			if(currentPlayer==0) {
-				int winPositionAvailability = gameObject.checkForWinningPositionAvailability(playerLetter);
-				if(winPositionAvailability!=0) {
-					gameBoard[winPositionAvailability]=playerLetter;
-				}
-				else {
-					int opponentWinPosition = gameObject.checkIfOpponentCanWin(computerLetter);
-					if(opponentWinPosition!=0) {
-						gameBoard[opponentWinPosition]=playerLetter;
-					}
-					else {
-						int cornerAvailability = gameObject.checkAvailableCorner();
-						if(cornerAvailability!=0) {
-							gameBoard[cornerAvailability]=playerLetter;
-						}
-						else {
-							int centerAvailability = gameObject.checkCenterAvailability();
-							if(centerAvailability!=0) {
-								gameBoard[centerAvailability]=playerLetter;
-							}
-							else {
-								int remainingPositions = gameObject.checkRemainingAvailableIndex();
-								if(remainingPositions!=0) {
-									gameBoard[remainingPositions]=playerLetter;
-								}
-							}
-						}
-					}
-				}
+				System.out.println("player's turn");
+				gameObject.makeMove(playerLetter);
 				currentPlayer=1;
 			} 
 			else if(currentPlayer==1) {
+				System.out.println("computer's turn");
 				int winPositionAvailability = gameObject.checkForWinningPositionAvailability(playerLetter);
 				if(winPositionAvailability!=0) {
 					gameBoard[winPositionAvailability]=computerLetter;
@@ -308,8 +297,6 @@ public class TicTacToeGame {
 		else if(continueToPlay.equals("draw")) {
 			System.out.println("It is a draw");
 		}
-	
-	
-	
+	gameObject.playAgain();
 	}
 }

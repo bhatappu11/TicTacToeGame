@@ -3,7 +3,7 @@ package com.bridgelabz.tictactoe;
 import java.util.*;
 
 public class TicTacToeGame {
-	public char[] gameBoard = new char[10];
+	public static char[] gameBoard = new char[10];
 	Scanner scanner=new Scanner(System.in);
 	
 	public char[] createBoard() {
@@ -222,13 +222,94 @@ public class TicTacToeGame {
 		char playerLetter = gameObject.letterToPlay();
 		char computerLetter = playerLetter=='X'?'O':'X';
 		gameObject.displayBoard();
-		int firstPlayer = gameObject.decideFirstPlayer();
-		gameObject.makeMove(playerLetter);
-		System.out.print("Winner ? ");
-		System.out.println(gameObject.checkWinner());
+		int currentPlayer = gameObject.decideFirstPlayer();
+		System.out.println(currentPlayer);
+		String continueToPlay = gameObject.checkWinner();
+		while(continueToPlay=="change turn") {
+			if(currentPlayer==0) {
+				int winPositionAvailability = gameObject.checkForWinningPositionAvailability(playerLetter);
+				if(winPositionAvailability!=0) {
+					gameBoard[winPositionAvailability]=playerLetter;
+				}
+				else {
+					int opponentWinPosition = gameObject.checkIfOpponentCanWin(computerLetter);
+					if(opponentWinPosition!=0) {
+						gameBoard[opponentWinPosition]=playerLetter;
+					}
+					else {
+						int cornerAvailability = gameObject.checkAvailableCorner();
+						if(cornerAvailability!=0) {
+							gameBoard[cornerAvailability]=playerLetter;
+						}
+						else {
+							int centerAvailability = gameObject.checkCenterAvailability();
+							if(centerAvailability!=0) {
+								gameBoard[centerAvailability]=playerLetter;
+							}
+							else {
+								int remainingPositions = gameObject.checkRemainingAvailableIndex();
+								if(remainingPositions!=0) {
+									gameBoard[remainingPositions]=playerLetter;
+								}
+							}
+						}
+					}
+				}
+				currentPlayer=1;
+			} 
+			else if(currentPlayer==1) {
+				int winPositionAvailability = gameObject.checkForWinningPositionAvailability(playerLetter);
+				if(winPositionAvailability!=0) {
+					gameBoard[winPositionAvailability]=computerLetter;
+				}
+				else {
+					int opponentWinPosition = gameObject.checkIfOpponentCanWin(playerLetter);
+					if(opponentWinPosition!=0) {
+						gameBoard[opponentWinPosition]=computerLetter;
+					}
+					else {
+						int cornerAvailability = gameObject.checkAvailableCorner();
+						if(cornerAvailability!=0) {
+							gameBoard[cornerAvailability]=computerLetter;
+						}
+						else {
+							int centerAvailability = gameObject.checkCenterAvailability();
+							if(centerAvailability!=0) {
+								gameBoard[centerAvailability]=computerLetter;
+							}
+							else {
+								int remainingPositions = gameObject.checkRemainingAvailableIndex();
+								if(remainingPositions!=0) {
+									gameBoard[remainingPositions]=computerLetter;
+								}
+							}
+						}
+					}
+				
+				}
+				currentPlayer=0;
+			}
+			continueToPlay=gameObject.checkWinner();
+			gameObject.displayBoard();
+			System.out.println();
+		}
+		if(continueToPlay.equals("X")){
+			if(playerLetter=='X')
+				System.out.println("Player has won");
+			else
+				System.out.println("Computer has won");
+		}
+		else if(continueToPlay.equals("O")){
+			if(playerLetter=='O')
+				System.out.println("Player has won");
+			else
+				System.out.println("Computer has won");
+		}
+		else if(continueToPlay.equals("draw")) {
+			System.out.println("It is a draw");
+		}
+	
+	
+	
 	}
-	
-	
-	
-
 }

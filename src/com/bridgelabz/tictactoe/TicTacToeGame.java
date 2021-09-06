@@ -135,7 +135,18 @@ public class TicTacToeGame {
 		return availability;
 		
 	}
-
+	private int checkAvailableCorner() {
+		if(gameBoard[1]==' ')
+			return 1;
+		else if(gameBoard[3]==' ')
+			return 3;
+		else if(gameBoard[7]==' ')
+			return 7;
+		else if(gameBoard[9]==' ')
+			return 9;
+		else
+			return 0;
+	}
 
 	public String checkWinner()
 	{

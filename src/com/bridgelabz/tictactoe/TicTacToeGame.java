@@ -54,6 +54,54 @@ public class TicTacToeGame {
 		else
 			return 0;
 	}
+	public String checkWinner()
+	{
+		for (int index = 1; index < 9; index++) {
+			String line = null;
+
+			switch (index) {
+			case 1:
+				line = Character.toString(gameBoard[1]) + Character.toString(gameBoard[2]) + Character.toString(gameBoard[3]);
+				break;
+			case 2:
+				line = Character.toString(gameBoard[4]) + Character.toString(gameBoard[5]) + Character.toString(gameBoard[6]);
+				break;
+			case 3:
+				line = Character.toString(gameBoard[7]) + Character.toString(gameBoard[8]) + Character.toString(gameBoard[9]);
+				break;
+			case 4:
+				line = Character.toString(gameBoard[1]) + Character.toString(gameBoard[4]) + Character.toString(gameBoard[7]);
+				break;
+			case 5:
+				line = Character.toString(gameBoard[2]) + Character.toString(gameBoard[5]) + Character.toString(gameBoard[8]);
+				break;
+			case 6:
+				line = Character.toString(gameBoard[3]) + Character.toString(gameBoard[6]) + Character.toString(gameBoard[9]);
+				break;
+			case 7:
+				line = Character.toString(gameBoard[1]) + Character.toString(gameBoard[5]) + Character.toString(gameBoard[9]);
+				break;
+			case 8:
+				line = Character.toString(gameBoard[3]) + Character.toString(gameBoard[5]) + Character.toString(gameBoard[7]);
+				break;
+			}
+			if (line.equals("XXX")) {
+				return "X";
+			}
+
+			// For O winner
+			else if (line.equals("OOO")) {
+				return "O";
+			}
+		}
+
+		for (int a = 1; a < 10; a++) {
+			if (gameBoard[a]==' ') {
+				return "change turn";
+			}
+		}
+		return "draw";
+	}
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe game");
 		TicTacToeGame gameObject=new TicTacToeGame();
@@ -63,8 +111,10 @@ public class TicTacToeGame {
 		gameObject.displayBoard();
 		int firstPlayer = gameObject.decideFirstPlayer();
 		gameObject.makeMove(playerLetter);
-		
+		System.out.print("Winner ? ");
+		System.out.println(gameObject.checkWinner());
 	}
+	
 	
 	
 
